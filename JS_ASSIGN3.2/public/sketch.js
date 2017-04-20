@@ -10,8 +10,6 @@ function preload(){
    for (var i = 0; i< 26; i++){
         Images[i] = loadImage("images/letter" + i + ".png"); 
     }
-  
-
 }
 
 
@@ -86,9 +84,6 @@ function loadingArray(){
 }
 
 
-
-
-
 function draw() {
   
     background(100,200,100);
@@ -99,12 +94,7 @@ function draw() {
 
     }
 
-    
-  
 }
-
-
-
 
 function mouseDragged() {
   
@@ -168,8 +158,7 @@ function Letter (x, y, img) {
           
     }
 
-           
-        
+                 
 }
     
 
