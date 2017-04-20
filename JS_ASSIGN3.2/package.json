@@ -1,0 +1,17 @@
+{
+  "name": "js_assign3",
+  "version": "1.0.0",
+  "description": "assignment 3 for js class 2017",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Nyantee A",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mongoose": "^4.9.5",
+    "socket.io": "^1.7.3"
+  }
+}
