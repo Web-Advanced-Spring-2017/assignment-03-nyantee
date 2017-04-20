@@ -1,6 +1,6 @@
 
 var express = require('express');
-var mongoose = require('mongoose');
+
 //importing the package or module express 
 //require is a javascript function that makes the express application
 
@@ -8,17 +8,6 @@ var mongoose = require('mongoose');
 var app = express();
 var server = app.listen(3000);
 
-mongoose.connect('mongodb://localhost/JS_ASSIGN3.2', function(err){
- 	if(err){
-
- 		console.log(err);
- 	}
-
- 	else{
- 		console.log('Connect to Mongodb');
- 	}
-
-})
 
 
 console.log("my socket server is running");

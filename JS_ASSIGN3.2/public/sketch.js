@@ -91,7 +91,7 @@ function loadingArray(){
 
 function draw() {
   
-    background(255);
+    background(100,200,100);
   
     for (var i=0; i<Letters.length; i++) {
 
