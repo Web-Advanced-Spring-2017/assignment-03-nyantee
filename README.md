@@ -7,17 +7,16 @@ Javascript
 
 **Due Date: Week 13 - Midnight of 4/19/2017**
 
-## :star2: [Accept Assignment](https://classroom.github.com/assignment-invitations/dcb3f86f9439ea9075db3735c731f697)
 
 ## Assignment Specification
 
 
 In my folder I have two attempts at making a real-time application using sockets.io
 
-##JS_ASSIGN3 
+## JS_ASSIGN3 
 For the first assignment I followed Daniel Shiffman’s youtube tutorial on socket.io to create a two-player drawing game with p5js. That helped me get the hand of how to navigate sockets.io.
 
-##JS_ASSIGN3.2
+## JS_ASSIGN3.2
 
 In this assignment I tried to take what I learned from the chat apps and above exercise to make something a bit more creative. I tried to create a two-player scrabble board. I ran into a series of issues.
 
