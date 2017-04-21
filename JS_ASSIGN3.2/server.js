@@ -29,7 +29,7 @@ function newConnection(socket){
 
 
 	console.log('new connection:' + socket.id);
-	socket.on('mouse',mouseMsg); // if there is a message called mouse trigger this function
+	//socket.on('mouse',mouseMsg); // if there is a message called mouse trigger this function
 	socket.on('positionArray',letterMsg);
 
 	 function mouseMsg(data){
@@ -37,7 +37,7 @@ function newConnection(socket){
 	// 		//send data back to server 
 	// 		//send to everyone including self
 	// 		//io.sockets.emit".      ""
-	// 	socket.broadcast.emit('mouse', data);
+	//socket.broadcast.emit('mouse', data);
 
 	console.log(data);
 
@@ -47,7 +47,7 @@ function newConnection(socket){
 			//send data back to server 
 			//send to everyone including self
 			//io.sockets.emit".      ""
-		socket.broadcast.emit('PositionArray', data);
+		socket.broadcast.emit('positionArray', data);
 
 		console.log(data);
 
