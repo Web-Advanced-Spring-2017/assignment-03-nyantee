@@ -1,5 +1,6 @@
 
-var socket;
+
+var mic;
 
 function setup() {
 

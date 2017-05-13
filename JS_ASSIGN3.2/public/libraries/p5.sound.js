@@ -217,7 +217,7 @@ sndcore = function () {
     return audiocontext;
   };
   // Polyfill for AudioIn, also handled by p5.dom createCapture
-  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mediaDevices.getUserMedia || navigator.msGetUserMedia;
   /**
    * Determine which filetypes are supported (inspired by buzz.js)
    * The audio element (el) will only be used to test browser support for various audio formats
@@ -6442,7 +6442,7 @@ audioin = function () {
       // if Firefox where users select their source via browser
       // if (typeof MediaStreamTrack.getSources === 'undefined') {
       // Only get the audio stream.
-      window.navigator.getUserMedia({ 'audio': true }, this._onStream = function (stream) {
+      window.navigator.mozGetUserMedia({ 'audio': true }, this._onStream = function (stream) {
         self.stream = stream;
         self.enabled = true;
         // Wrap a MediaStreamSourceNode around the live input

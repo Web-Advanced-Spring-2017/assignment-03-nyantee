@@ -25,7 +25,6 @@ io.sockets.on('connection', newConnection);
 function newConnection(socket){
 
 
-
 	console.log('new connection:' + socket.id);
 	socket.on('mouse',mouseMsg); // if there is a message called mouse strigger this function
 
@@ -38,9 +37,6 @@ function newConnection(socket){
 		socket.broadcast.emit('mouse', data);
 
 		console.log(data);
-
-
-
 
 	}
 }

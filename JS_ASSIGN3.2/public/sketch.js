@@ -1,8 +1,9 @@
 var Letters = [];
 var Images = [];
+var stop;
 
 //can't camel toe arrays?
-var Oppletters = [];
+var Opponents = [];
 
 
 function preload(){
@@ -16,79 +17,156 @@ var socket = io()
 // })
 
 
+
+
 function setup() {
     createCanvas(900,900);
-     
-     // socket = io.connect('http://127.0.0.1:3000');
-	//should stay in setup
-	//triggering the function when message is received 
-     loadingArray();
+    
+ 
 
-    socket.on('positionArray', opponentLetters());
-    //socket.on('mouse', function(data){
-    // console.log(data)
-    // });
+
+}
+
+
+function startDealing(){
+
+loadingArray();
+
+console.log("button worked");
+
 }
 
 
 
 //////////// MAKE OPPONENT LETTERS GROUP////////
-function opponentLetters(data){
-    Oppletters.push(new Letter(random(50,500),random(400,600), Images[data]));
-        
-          console.log("Opponent array created");
-          console.log(Oppletters.length);
-}
+
+//function receiveMessage() {
+
+    socket.on('positionArray', 
+
+      function(data){
+
+          console.log("data recieved");
+
+                //camelToe for array is no
+              //breaks anytime i change data to data.rPos. why?
+          console.log("new letter is" + data);
 
 
+           Opponents.push(new Letter(random(50,800),random(700,900), Images[data]));
 
-function returnR() {
-		var r = floor(random(0, Images.length));
-  	return(r); 
-}
+
+          console.log("opponent has," + Opponents.length);
+
+       
+      }
+    );
+
+
+//take mouse position and update 
+
+    // socket.on('mousePosition', 
+
+    //   function(data){
+
+
+    //     Opponents[t].update();
+
+    // }   
+    // );  
+
 
 
 //// CREATE PLAYER ARRAY/////
 
 function loadingArray(){
 
+
+
 	 for (var i=0; i<10; i++) {
 
     		var r = returnR();
 
     	  //how many letters do you want on the page
-        Letters.push(new Letter(random(50,600),random(50,200), Images[r] ));
+        Letters.push(new Letter(random(50,880),random(50,300), Images[r]));
         console.log(r);
+
+
+
 
         ///// MAKE THE OBJECT MESSAGE////
         var data = {
         rPos: r
         }
+
+
         
         socket.emit('positionArray', data);
   
-	}
 
-    console.log(r);
 
+
+	 }
+
+
+  function returnR() {
+    var r = floor(random(0, Images.length-1));
+    return(r); 
+  }
 }
+
 
 
 function draw() {
-  
-    background(100,200,100);
-    for (var i=0; i<Letters.length; i++) {
-        Letters[i].display(); 
 
+   //receiveMessage();
+   background(100,200,100);
+
+   //setTimeout(receiveMessage, 60000);
+
+    for (var i=0; i<Letters.length; i++) {
+
+        Letters[i].display(); 
     }
 
+
+    for (var j=0; j<Opponents.length; j++) {
+
+
+        Opponents[j].display(); 
+    }
+
+ 
+
+
+
+
 }
+
 
 function mouseDragged() {
      for (var i=0; i<Letters.length; i++) {
+          
          Letters[i].update();
+
+    }
+
+ for (var i=0; i<Opponents.length; i++) {
+          
+         Opponents[i].update();
+
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 //class that creates objects array that holds images
@@ -111,16 +189,6 @@ function Letter (x, y, img) {
 
     this.update = function () {
       
-      
-      // var d = dist(mouseX,mouseY,this.x, this.y);
-        
-        
-      //     if (mouseIsPressed & d<20){
-        
-      //   this.x = mouseX;
-      //     this.y = mouseY;
-      //     }
-          
               
       var d = dist(mouseX,mouseY,this.x, this.y);
         
@@ -132,15 +200,20 @@ function Letter (x, y, img) {
       	  }
 
 
-           var data = {
+
+/////////PACKAGE//////////
+   //data 
+    //take this data and plug it into a new letter every 5minutes 
+     var data = {
 
 			x: this.x,
-			y: this.y
+			y: this.y,
+      img:this.img 
 
 			}
 
-			//socket.emit('mouse', data);
-          	// socket.emit('positionArray', position);
+        socket.emit('mousePosition', data);
+
           
     }
 

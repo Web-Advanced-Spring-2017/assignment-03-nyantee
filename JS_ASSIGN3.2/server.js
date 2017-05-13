@@ -24,33 +24,36 @@ var io = socket(server); //keeps track of inputs and outputs - server is an argu
 
 io.sockets.on('connection', newConnection);
 
+
 function newConnection(socket){
+
 
 
 
 	console.log('new connection:' + socket.id);
 	//socket.on('mouse',mouseMsg); // if there is a message called mouse trigger this function
-	socket.on('positionArray',letterMsg);
+
+	socket.on('mousePosition',mouseMsg);
 
 	 function mouseMsg(data){
 
-	// 		//send data back to server 
-	// 		//send to everyone including self
-	// 		//io.sockets.emit".      ""
-	//socket.broadcast.emit('mouse', data);
+	 		socket.broadcast.emit('mousePosition', data);
+			console.log(data);
 
-	console.log(data);
+		}
 
-	 }
+
+	socket.on('positionArray',letterMsg);
+	 
 		function letterMsg(data){
 
 			//send data back to server 
 			//send to everyone including self
 			//io.sockets.emit".      ""
-		socket.broadcast.emit('positionArray', data);
+			socket.broadcast.emit('positionArray', data.rPos);
 
-		console.log(data);
+				console.log(data);
 
-	}
+			}
 }
 
